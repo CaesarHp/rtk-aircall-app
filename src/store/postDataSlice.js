@@ -2,14 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const postDataApi = process.env.AIR_CALL_POST_DATA_API;
+
 export const postData = createAsyncThunk("data/postData", async (obj) => {
   const { id, archive } = obj;
-  const { data } = await axios.post(
-    `https://aircall-job.herokuapp.com/activities/${id}`,
-    {
-      is_archived: !archive,
-    }
-  );
+  const { data } = await axios.post(`${postDataApi}${id}`, {
+    is_archived: !archive,
+  });
 
   return data;
 });
