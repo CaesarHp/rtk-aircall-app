@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const getDataApi = process.env.AIR_CALL_GET_DATA_API;
-
 export const getData = createAsyncThunk("data/getData", async () => {
-  const { data } = await axios.get(getDataApi);
+  const { data } = await axios.get(
+    "https://aircall-job.herokuapp.com/activities/"
+  );
 
   return data;
 });
